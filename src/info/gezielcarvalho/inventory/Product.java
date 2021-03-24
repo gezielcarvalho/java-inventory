@@ -1,4 +1,5 @@
 package info.gezielcarvalho.inventory;
+//Projeto 4
 
 public class Product {
 	//Instance field declarations
