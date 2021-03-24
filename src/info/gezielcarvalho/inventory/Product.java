@@ -1,5 +1,5 @@
 package info.gezielcarvalho.inventory;
-//Projeto 4
+//Project 5
 
 public class Product {
 	//Instance field declarations
@@ -7,6 +7,9 @@ public class Product {
 	private String productName;
 	private int unitsInStock;
 	private double unitPrice;
+	private boolean active;
+	
+	
 
 	//Constructor that allows the compiler to initialize the fields to their default values
 	public Product() {
@@ -14,15 +17,17 @@ public class Product {
 		this.productName = "Produto_"+Long.toString(this.itemNumber);//create a fake name, based on the itemNumber
 		this.unitsInStock = 0;
 		this.unitPrice = 1;
+		this.active = true;
 	}
 
 	//Constructor with parameters for  all four of the class’ instance fields so that they can be initialized with  values from the driver class
-	public Product(long itemNumber, String productName, int unitsInStock, double unitPrice) {
+	public Product(long itemNumber, String productName, int unitsInStock, double unitPrice, boolean isActive) {
 		super();
 		this.itemNumber = itemNumber;
 		this.productName = productName;
 		this.unitsInStock = unitsInStock;
 		this.unitPrice = unitPrice;
+		this.active = isActive;
 	}
 
 	// Gets itemNumber value
@@ -33,6 +38,16 @@ public class Product {
 	// Sets itemNumber value
 	public void setItemNumber(long itemNumber) {
 		this.itemNumber = itemNumber;
+	}
+
+	// Gets active status
+	public boolean isActive() {
+		return active;
+	}
+
+	// Sets active status
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	// Gets productName value
@@ -64,13 +79,19 @@ public class Product {
 	public void setUnitPrice(double unitPrice) {
 		this.unitPrice = unitPrice;
 	}
+	
+	public double getInventoryValue() {
+		return this.unitPrice * this.unitsInStock;
+	}	
 
 	@Override
 	public String toString() {
-		return    "Item Number      : " + itemNumber + "\n"
+		return    "\nItem Number      : " + itemNumber + "\n"
 				+ "Name             : " + productName + "\n"
 				+ "Quantity in stock: " + unitsInStock  + "\n"
-				+ "Price            : " + unitPrice + "\n\n";
+				+ "Price            : " + unitPrice + "\n" 
+				+ "Stock value      : " + this.getInventoryValue() + "\n" 
+				+ "Product status   : " + (active?"Active":"Discontinued") + "\n\n";
 	}
 	
 }
